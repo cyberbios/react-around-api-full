@@ -1,0 +1,18 @@
+.gallery {
+  margin-top: 47px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
+  column-gap: 17px;
+  row-gap: 20px;
+}
+
+@media screen and (max-width: 1279px) {
+  .gallery {
+    margin-top: 40px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .gallery {
+    margin-top: 36px;
+  }
+}
