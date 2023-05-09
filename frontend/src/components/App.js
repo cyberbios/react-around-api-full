@@ -84,7 +84,7 @@ function App() {
         })
         .catch((err) => console.log(err.message));
     }
-  }, []);
+  }, [history]);
 
   const closeAllPopups = () => {
     setIsAddPlacePopupOpen(false);
