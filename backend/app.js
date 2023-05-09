@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
-const limiter = require('./constants/rateLimit');
 const cors = require('cors');
+const limiter = require('./constants/rateLimit');
 const httpStatusCodes = require('./constants/httpStatusCodes');
 const ApiError = require('./constants/ApiError');
 const { handleErrors } = require('./constants/handleErrors');
@@ -22,7 +22,7 @@ app.use(requestLogger);
 app.use(helmet());
 app.use(limiter);
 app.use(cors());
-app.options('*', cors()); //enable requests for all routes
+app.options('*', cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -35,5 +35,5 @@ app.use(errorLogger);
 app.use(errors);
 app.use(handleErrors);
 app.listen(PORT, () => {
-  console.log(`App listening at port ${PORT}`);
+  // console.log(`App listening at port ${PORT}`);
 });
