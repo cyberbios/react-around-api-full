@@ -1,8 +1,29 @@
-# react-around-api-full
+# Around The U.S. Web App
 
-The API of "Around the U.S." with authorization and registration handled by the back-end server.
+## **********\*\***********\*\***********\*\***********\_\_\_**********\*\***********\*\***********\*\***********
 
-This repository contains the full API of "Around the U.S." project that features user authorization and user registration and handles cards and users. Please add to this readme:
+## react-around-api-full
 
-- a link to repository with the complete React application which uses this API;
-- a link to the website that hosts your API.
+# 🛠 Tools
+
+## **********\*\***********\*\***********\*\***********\_\_\_**********\*\***********\*\***********\*\***********
+
+## Frontend: ReactJS | CSS | HTML
+
+## Backend: NodeJS | Express | MongoDB
+
+## Host Source: Google Cloud
+
+## **********\*\***********\*\***********\*\***********\_\_\_**********\*\***********\*\***********\*\***********
+
+## The API of "Around the U.S." with authorization and registration handled by the back-end server.
+
+## This repository contains the full API of "Around the U.S." project that features user authorization and user registration and handles cards!
+
+# 🔗 Links
+
+## **********************\*\***********************\_\_\_\_**********************\*\***********************
+
+## Frontend: https://www.lev-meir.mooo.com
+
+## Backend: https://api.lev-meir.mooo.com
