@@ -8,8 +8,9 @@ export class Api {
     return res.ok ? res.json() : Promise.reject(res.statusText);
   }
 
-  _request(url, options) {
-    return fetch(url, options).then(this._checkResponse);
+  async _request(url, options) {
+    const res = await fetch(url, options);
+    return this._checkResponse(res);
   }
 
   /**
@@ -23,30 +24,30 @@ export class Api {
   }
 
   //get all cards
-  getInitialCards() {
-    return this._request(`${this._baseUrl}/cards`, {
+  async getInitialCards() {
+    return await this._request(`${this._baseUrl}/cards`, {
       headers: this._headers,
     });
   }
 
-  editUserInfo(newUserInfo) {
-    return this._request(`${this._baseUrl}/users/me`, {
+  async editUserInfo(newUserInfo) {
+    return await this._request(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(newUserInfo),
     });
   }
 
-  addCard(newCardInfo) {
-    return this._request(`${this._baseUrl}/cards`, {
+  async addCard(newCardInfo) {
+    return await this._request(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(newCardInfo),
     });
   }
 
-  deleteCard(cardId) {
-    return this._request(`${this._baseUrl}/cards/${cardId}`, {
+  async deleteCard(cardId) {
+    return await this._request(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
     });
@@ -59,8 +60,8 @@ export class Api {
     });
   }
 
-  editUserAvatar(avatar) {
-    return this._request(`${this._baseUrl}/users/me/avatar`, {
+  async editUserAvatar(avatar) {
+    return await this._request(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({ avatar }),
@@ -68,10 +69,11 @@ export class Api {
   }
 }
 
+const jwt = localStorage.getItem("jwt");
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
+  baseUrl: "https://api.lev-meir.mooo.com",
   headers: {
-    authorization: "f3a40ce9-1f69-4ecd-ac6f-bd6bc99d92d1",
+    authorization: `Bearer ${jwt}`,
     "Content-Type": "application/json",
   },
 });

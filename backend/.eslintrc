@@ -3,12 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "airbnb",
-    "airbnb-base",
-    "prettier",
-    "plugin: jsx-a11y/recommended"
-  ],
+  "extends": ["airbnb", "airbnb-base", "prettier"],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",

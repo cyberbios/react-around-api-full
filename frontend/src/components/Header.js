@@ -39,13 +39,10 @@ export function Header({ ...props }) {
           <div className="header__registration">
             <img className="header__logo" src={logo} alt="logo" />
             <div className="header__nav">
-              <p className="header__nav_email">
-                {props.email}
-                {/* eslint-disable-next-line */}
-              </p>
-              <a className="header__link" onClick={logOut}>
+              <p className="header__nav_email">{props.email}</p>
+              <button className="header__link" onClick={logOut}>
                 Log out
-              </a>
+              </button>
             </div>
           </div>
         </header>
