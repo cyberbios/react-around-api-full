@@ -2,8 +2,8 @@ require('dotenv').config();
 
 const { JWT_SECRET = 'test' } = process.env;
 const jwt = require('jsonwebtoken');
-const { UNAUTHORIZED } = require('../constants/httpStatusCodes');
-const ApiError = require('../constants/ApiError');
+const { UNAUTHORIZED } = require('../utils/httpStatusCodes');
+const ApiError = require('../utils/ApiError');
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;

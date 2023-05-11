@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { testLink } = require('../constants/testLink');
+const { testLink } = require('../utils/testLink');
 
 const cardSchema = new mongoose.Schema({
   name: {

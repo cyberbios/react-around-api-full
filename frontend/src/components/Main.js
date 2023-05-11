@@ -12,6 +12,7 @@ export function Main({
   onCardClick,
 }) {
   const currentUser = useContext(CurrentUserContext);
+  let reverseCards = [...cards].reverse();
 
   return (
     <main className="main">
@@ -49,7 +50,7 @@ export function Main({
         />
       </section>
       <section className="gallery">
-        {cards.map((card) => (
+        {reverseCards.map((card) => (
           <Card
             key={card._id}
             card={card}

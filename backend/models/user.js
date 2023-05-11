@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const isEmail = require('validator/lib/isEmail');
-const { testLink } = require('../constants/testLink');
+const { testLink } = require('../utils/testLink');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -23,8 +23,7 @@ const userSchema = new mongoose.Schema({
       },
       message: (props) => `${props.value} is not a valid URL!`,
     },
-    default:
-      'https://practicum-content.s3.us-west-1.amazonaws.com/resources/moved_avatar_1604080799.jpg',
+    default: 'https://pictures.s3.yandex.net/resources/avatar_1604080799.jpg',
   },
   email: {
     type: String,

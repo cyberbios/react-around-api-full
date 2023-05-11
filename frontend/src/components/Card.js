@@ -5,12 +5,15 @@ function Card({ card, onCardClick, onCardLike, onCardTrashClick }) {
   const currentUser = useContext(CurrentUserContext);
 
   // Checking if the current user is the owner of the current card
-  const isOwn = card.owner._id === currentUser._id;
+  const isOwn = card.owner === currentUser._id;
+  //show/hide trash button
   const cardDeleteButtonClassName = `card__button-trash ${
     isOwn ? "card__button-trash_visible" : "card__button-trash_hidden"
   }`;
   // Check if the card was liked by the current user
-  const isLiked = card.likes.some((user) => user._id === currentUser._id);
+  const isLiked = card.likes.some((user) => {
+    return user === currentUser._id;
+  });
   const cardLikeButtonClassName = `card__button-like ${
     isLiked ? "card__button-like_liked" : ""
   }`;

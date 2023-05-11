@@ -37,17 +37,21 @@ function App() {
 
   const history = useHistory();
 
+  //missed login page if we are already in logged in
   useEffect(() => {
-    api
-      .getUserInfo()
-      .then((user) => {
-        setCurrentUser(user);
-      })
-      .catch((err) => {
-        console.log("app.js ", err);
-      });
-  }, []);
+    if (isLogin) {
+      api
+        .getUserInfo()
+        .then((user) => {
+          setCurrentUser(user);
+        })
+        .catch((err) => {
+          console.log("app.js ", err);
+        });
+    }
+  }, [isLogin]);
 
+  //close popup by esc or click on overlay
   useEffect(() => {
     const closeByEscape = (e) => {
       if (e.key === "Escape") {
@@ -60,16 +64,19 @@ function App() {
     return () => document.removeEventListener("keydown", closeByEscape);
   }, []);
 
+  //load all cads from db for autn user
   useEffect(() => {
-    api
-      .getInitialCards()
-      .then((initialCards) => {
-        setCards(initialCards);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    if (isLogin) {
+      api
+        .getInitialCards()
+        .then((initialCards) => {
+          setCards(initialCards.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [isLogin]);
 
   //check if user logged in before and save email
   useEffect(() => {
@@ -78,13 +85,13 @@ function App() {
       auth
         .checkingTokenValidity(jwt)
         .then((user) => {
-          setEmail(user.data.email);
+          setEmail(user.email);
           setIsLogin(true);
           history.push("/");
         })
         .catch((err) => console.log(err.message));
     }
-  }, [history]);
+  }, []);
 
   const closeAllPopups = () => {
     setIsAddPlacePopupOpen(false);
@@ -97,12 +104,13 @@ function App() {
     setFailRegistration(false);
   };
 
+  //add new card
   const handleAddPlaceSubmit = (newPlace) => {
     setIsLoading(true);
     api
       .addCard(newPlace)
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        setCards([...cards, newCard.data]);
         closeAllPopups();
       })
       .catch((err) => {
@@ -111,14 +119,18 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
+  //add like and change like status
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some((user) => user._id === currentUser._id);
+    const isLiked = card.likes.some((user) => {
+      return user === currentUser._id;
+    });
+    console.log(isLiked);
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((state) =>
           state.map((currentCard) =>
-            currentCard._id === card._id ? newCard : currentCard
+            currentCard._id === card._id ? newCard.data : currentCard
           )
         );
       })
@@ -127,11 +139,7 @@ function App() {
       });
   };
 
-  function handleCardTrashClick(card) {
-    setSelectedCard(card);
-    setIsDeleteCardPopupOpen(true);
-  }
-
+  //delete selected card
   function handleCardDelete(card) {
     setIsLoading(true);
     api
@@ -146,26 +154,36 @@ function App() {
       })
       .finally(() => setIsLoading(false));
   }
+  //open popup for upload avatar
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
   };
+  //open popup for edit user's profile
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true);
   };
+  //open popup with confirm delete card
+  function handleCardTrashClick(card) {
+    setSelectedCard(card);
+    setIsDeleteCardPopupOpen(true);
+  }
+  //open popup add new place
   const handleAddPlaceClick = () => {
     setIsAddPlacePopupOpen(true);
   };
+  //open popup with full view image
   const handleCardClick = (card) => {
     setSelectedCard(card);
     setIsImagePopupOpen(true);
   };
 
+  //Update avatar
   const handleUpdateAvatar = (avatar) => {
     setIsLoading(true);
     api
       .editUserAvatar(avatar)
       .then((newAvatar) => {
-        setCurrentUser({ ...newAvatar });
+        setCurrentUser({ ...newAvatar.data });
         closeAllPopups();
       })
       .catch((err) => {
@@ -173,12 +191,13 @@ function App() {
       })
       .finally(() => setIsLoading(false));
   };
+  //Update name and description about user
   const handleUpdateUser = (name, about) => {
     setIsLoading(true);
     api
       .editUserInfo(name, about)
       .then((newUser) => {
-        setCurrentUser(newUser);
+        setCurrentUser(newUser.data);
         closeAllPopups();
       })
       .catch((err) => {
@@ -216,6 +235,7 @@ function App() {
       .logIn(email, password)
       .then((res) => {
         localStorage.setItem("jwt", res.token);
+        setIsLogin(true);
         history.go("/");
       })
       .catch((err) => {

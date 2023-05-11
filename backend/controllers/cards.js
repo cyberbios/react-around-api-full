@@ -1,6 +1,6 @@
 const Card = require('../models/card');
-const httpStatusCodes = require('../constants/httpStatusCodes');
-const ApiError = require('../constants/ApiError');
+const httpStatusCodes = require('../utils/httpStatusCodes');
+const ApiError = require('../utils/ApiError');
 
 // get all cards
 module.exports.getAllCards = (req, res, next) => {

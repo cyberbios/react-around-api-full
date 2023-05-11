@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Link, useLocation, useHistory, Route } from "react-router-dom";
 import logo from "../images/logo.svg";
 
@@ -40,7 +39,7 @@ export function Header({ ...props }) {
             <img className="header__logo" src={logo} alt="logo" />
             <div className="header__nav">
               <p className="header__nav_email">{props.email}</p>
-              <a className="header__link" href="/register" onClick={logOut}>
+              <a className="header__link" onClick={logOut}>
                 Log out
               </a>
             </div>

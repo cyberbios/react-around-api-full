@@ -67,14 +67,14 @@ export class Api {
     });
   }
 }
+const jwt = localStorage.getItem("jwt");
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
-
+  baseUrl: "https://api.lev-meir.mooo.com",
   headers: {
-    authorization: "f3a40ce9-1f69-4ecd-ac6f-bd6bc99d92d1",
-
+    authorization: `Bearer ${jwt}`,
     "Content-Type": "application/json",
   },
 });
+// "https://api.lev-meir.mooo.com"
 
 export default api;
