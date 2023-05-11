@@ -32,7 +32,7 @@ app.use((req, res, next) => {
   next(new ApiError('Request resource not found.', httpStatusCodes.NOT_FOUND));
 });
 app.use(errorLogger);
-app.use(errors);
+app.use(errors());
 app.use(handleErrors);
 app.listen(PORT, () => {
   // console.log(`App listening at port ${PORT}`);

@@ -9,8 +9,7 @@ export class Api {
   }
 
   async _request(url, options) {
-    const res = await fetch(url, options);
-    return this._checkResponse(res);
+    return await fetch(url, options).then(this._checkResponse);
   }
 
   /**
@@ -68,12 +67,12 @@ export class Api {
     });
   }
 }
-
-const jwt = localStorage.getItem("jwt");
 const api = new Api({
-  baseUrl: "https://api.lev-meir.mooo.com",
+  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
+
   headers: {
-    authorization: `Bearer ${jwt}`,
+    authorization: "f3a40ce9-1f69-4ecd-ac6f-bd6bc99d92d1",
+
     "Content-Type": "application/json",
   },
 });

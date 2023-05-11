@@ -10,7 +10,7 @@ module.exports.getAllCards = (req, res, next) => {
       next(
         new ApiError(
           'An error has occurred on the server.',
-          httpStatusCodes.DEFAULT
+          httpStatusCodes.INTERNAL_SERVER
         )
       )
     );
@@ -43,7 +43,7 @@ module.exports.deleteCardById = (req, res, next) => {
         next(
           new ApiError(
             'An error has occurred on the server.',
-            httpStatusCodes.DEFAULT
+            httpStatusCodes.INTERNAL_SERVER
           )
         );
       }
@@ -63,7 +63,7 @@ module.exports.createCard = (req, res, next) => {
         next(
           new ApiError(
             'An error has occurred on the server',
-            httpStatusCodes.DEFAULT
+            httpStatusCodes.INTERNAL_SERVER
           )
         );
       }
@@ -91,7 +91,7 @@ module.exports.likeCard = (req, res, next) => {
         next(
           new ApiError(
             'An error has occurred on the server.',
-            httpStatusCodes.DEFAULT
+            httpStatusCodes.INTERNAL_SERVER
           )
         );
       }
@@ -119,7 +119,7 @@ module.exports.dislikeCard = (req, res, next) => {
         next(
           new ApiError(
             'An error has occurred on the server.',
-            httpStatusCodes.DEFAULT
+            httpStatusCodes.INTERNAL_SERVER
           )
         );
       }

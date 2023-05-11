@@ -27,7 +27,7 @@ module.exports.getAllUsers = (req, res, next) => {
       next(
         new ApiError(
           'An error has occurred on the server.',
-          httpStatusCodes.DEFAULT
+          httpStatusCodes.INTERNAL_SERVER
         )
       )
     );
@@ -50,7 +50,7 @@ module.exports.getUserById = (req, res, next) => {
         next(
           new ApiError(
             'An error has occurred on the server.',
-            httpStatusCodes.DEFAULT
+            httpStatusCodes.INTERNAL_SERVER
           )
         );
       }
@@ -86,7 +86,7 @@ module.exports.createUser = (req, res, next) => {
             next(
               new ApiError(
                 'An error has occurred on the server',
-                httpStatusCodes.DEFAULT
+                httpStatusCodes.INTERNAL_SERVER
               )
             );
           }
@@ -122,7 +122,7 @@ module.exports.updateUserProfile = (req, res, next) => {
         next(
           new ApiError(
             'An error has occurred on the server.',
-            httpStatusCodes.DEFAULT
+            httpStatusCodes.INTERNAL_SERVER
           )
         );
       }
@@ -154,7 +154,7 @@ module.exports.updateUserAvatar = (req, res, next) => {
         next(
           new ApiError(
             'An error has occurred on the server.',
-            httpStatusCodes.DEFAULT
+            httpStatusCodes.INTERNAL_SERVER
           )
         );
       }

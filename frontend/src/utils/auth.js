@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.lev-meir.mooo.com";
+const BASE_URL = "https://register.nomoreparties.co";
 
 function checkResponse(res) {
   if (res.ok) {

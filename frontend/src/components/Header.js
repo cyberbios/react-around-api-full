@@ -40,9 +40,9 @@ export function Header({ ...props }) {
             <img className="header__logo" src={logo} alt="logo" />
             <div className="header__nav">
               <p className="header__nav_email">{props.email}</p>
-              <button className="header__link" onClick={logOut}>
+              <a className="header__link" href="/register" onClick={logOut}>
                 Log out
-              </button>
+              </a>
             </div>
           </div>
         </header>
